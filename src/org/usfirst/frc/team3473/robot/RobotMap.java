@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
+ * @author Forest 
  */
 public class RobotMap {
 
