@@ -1,0 +1,50 @@
+package org.usfirst.frc.team3473.robot.commands;
+
+import org.usfirst.frc.team3473.robot.RobotMap;
+import org.usfirst.frc.team3473.robot.subsystems.SubsystemList;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+
+public class Autonomous extends Command{
+  	private static boolean finished = false;
+	
+    protected void initialize() {
+    	RobotMap.SENSOR_gyro.reset();
+    }
+
+    protected void execute() {
+    	if(isFinished()){
+			  return;
+		  }
+    	safeLowGear();
+	  	finished = true;
+    } 
+
+    
+    private void autonOneTote(){
+    	SubsystemList.elevator.autonMove(.8,false);
+    	SubsystemList.drivebase.turnRight(-.5);
+		  while (RobotMap.SENSOR_gyro.getAngle() > 90);
+      safeLowGear();
+		  SubsystemList.elevator.autonMove(.8,true);
+    }
+   
+    private void safeLowGear(){
+    	SubsystemList.drivebase.setAll(.5);
+		  Timer.delay(2);
+		  SubsystemList.drivebase.stopDrive();
+    }
+    
+    protected boolean isFinished() {
+    	return finished;
+    }
+
+    protected void end() {
+    	SubsystemList.drivebase.stopDrive();
+		  finished = true;
+    }
+
+	  @Override
+	  protected void interrupted() {}
+}
