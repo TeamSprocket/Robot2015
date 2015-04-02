@@ -1,0 +1,26 @@
+
+package org.usfirst.frc.team3473.robot.commands;
+
+import org.usfirst.frc.team3473.robot.subsystems.SubsystemList;
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+/**
+ * @author Forest
+ */
+public class Drive extends Command {
+
+    protected void initialize() {}
+
+    protected void execute() {
+    	SmartDashboard.putNumber("drive", SmartDashboard.getNumber("drive")+1);
+    	SubsystemList.drivebase.run();
+    }
+
+    protected boolean isFinished() {return false;}
+
+    protected void end() {}
+
+    protected void interrupted() {}
+}
